@@ -1,0 +1,54 @@
+<div class="text-layout">
+    <h1>Personalized Pipes</h1>
+    <p>Pipes personalized by {{ 'us' | mayus:inMayus}}</p>
+</div>
+<p-toolbar>
+    <div class="p-toolbar-group-left"></div>
+    
+    <div class="p-toolbar-group-right">
+        <button pButton type="button" label="Toggle Mayus" (click)="isMayus()" class="mr-1 p-button-warning"></button>
+        <button pButton icon="pi pi-search" icon="pi pi-sort" label="Orde By Nmae" class="mr-1" (click)="order('name')"></button>
+        <button pButton icon="pi pi-search" icon="pi pi-sort" label="Flies" class="mr-1 p-button-success" (click)="order('fly')"></button>
+        <button pButton icon="pi pi-search" icon="pi pi-sort" label="By Color" class="mr-1 p-button-help" (click)="order('color')"></button>
+    </div>
+</p-toolbar>
+<div class="grid">
+    <div class="col mt-2">
+        <p-table [value]="heroes | order:orderBy">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th id="#">Name</th>
+                    <th id="#">Fly</th>
+                    <th id="#">Color</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-heroe>
+                <tr>
+                    <td>{{heroe.name}}</td>
+                    <td>{{heroe.fly | fly | titlecase}}</td>
+                    <td>{{heroe.color}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+<div class="grid">
+    <div class="col mt-2">
+        <p-table [value]="heroes">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th id="#" pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                    <th id="#" pSortableColumn="fly">Fly <p-sortIcon field="fly"></p-sortIcon></th>
+                    <th id="#" pSortableColumn="color">Color <p-sortIcon field="color"></p-sortIcon></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-heroe>
+                <tr>
+                    <td>{{heroe.name}}</td>
+                    <td>{{heroe.fly | fly | titlecase}}</td>
+                    <td>{{heroe.color}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
